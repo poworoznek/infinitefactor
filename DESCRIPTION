@@ -1,0 +1,11 @@
+Package: infinitefactor
+Type: Package
+Title: Bayesian infinite factor models
+Version: 1.0
+Date: 2020-01-29
+Author: Evan Poworoznek
+Maintainer: <infinitefactorpackage@gmail.com>
+Description: Sampler and post-processing functions for semi-parametric Bayesian infinite factor models, motivated by the Multiplicative Gamma Shrinkage Prior of Bhattacharya and Dunson (2011). Contains component C++ functions for building samplers for linear and 2-way interaction factor models using the multiplicative gamma and dirichlet-laplace shrinkage priors.
+License: GPL-2
+Imports: Rcpp (>= 1.0.2), bayesSurv, reshape2, ggplot2
+LinkingTo: Rcpp, RcppArmadillo
