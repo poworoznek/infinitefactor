@@ -13,7 +13,7 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{infinitefactor}
 \packageIndices{infinitefactor}
-~~ An overview of how to use the package, including the most important functions ~~
+Perform sampling with the linearMGSP() and linearDL() functions for linear factor models, or interactionMGSP() and interactionDL() functions for factor regression models including 2-way interactions. See jointRot() or msf() for postprocessing.
 }
 \author{
 \packageAuthor{infinitefactor}
@@ -21,14 +21,33 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{infinitefactor}
 }
 \references{
-~~ Literature or other references for background information ~~
+Bhattacharya, Anirban, and David B. Dunson. "Sparse Bayesian infinite factor models." Biometrika (2011): 291-306.
+
+Bhattacharya, Anirban, et al. "Dirichlet-Laplace priors for optimal shrinkage." Journal of the American Statistical Association 110.512 (2015): 1479-1490.
+
+Ferrari, Federico, and David B. Dunson. "Bayesian Factor Analysis for Inference on Interactions." arXiv preprint arXiv:1904.11603 (2019).
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
 \examples{
-~~ simple examples of the most important functions ~~
+k0 = 5
+p = 20
+n = 500
+
+lambda = matrix(rnorm(p*k0, 0, 0.01), ncol = k0)
+lambda[sample.int(p, 40, replace = TRUE) +
+         p*(sample.int(k0, 40, replace = TRUE)-1)] = rnorm(40, 0, 1)
+lambda[1:7, 1] = rnorm(7, 2, 0.5)
+lambda[8:14, 2] = rnorm(7, -2, 0.5)
+lambda[15:20, 3] = rnorm(6, 2, 0.5)
+lambda[,4] = rnorm(p, 0, 0.5)
+lambda[,5] = rnorm(p, 0, 0.5)
+plotmat(varimax(lambda)[[1]])
+
+Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
+
+out = linearDL(Y = Y, nrun = 10000, burn = 5000)
+
+aligned = jointRot(out$lambdaSamps, out$etaSamps)
+
+plotmat(lmean(aligned$lambda))
 }

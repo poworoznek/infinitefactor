@@ -3,7 +3,7 @@
 plotmat = function(mat, color = "green", title = NULL){
   mat = apply(mat, 2, rev)
   longmat = melt(mat)
-  
+  Var1 = Var2 = value = NULL
   p = ggplot(longmat, aes(x = Var2, y = Var1)) + 
     geom_tile(aes(fill=value), colour="grey20") 
   

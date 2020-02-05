@@ -72,7 +72,7 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + bayesSurv::rMVNorm(n,Sigma = 3*diag(p))
+X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
 beta_true = numeric(p); beta_true[c(1,3,6,8,10,11)] =c(1,1,0.5,-1,-2,-0.5)
 Omega_true = matrix(0,p,p)

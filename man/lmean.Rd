@@ -7,11 +7,10 @@ Average elements of a list
 Convenience function to compute sample means when samples are stored as a list. List elements should be compatible with addition and scalar division (e.g. must share the same dimensions).
 }
 \usage{
-lmean(l)
+lmean(list)
 }
 \arguments{
-  \item{l}{a list of parameter samples
-}
+  \item{list}{a list of parameter samples}
 }
 \value{
 same type as a single element of the input list

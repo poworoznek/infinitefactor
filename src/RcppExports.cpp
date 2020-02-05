@@ -7,37 +7,37 @@
 using namespace Rcpp;
 
 // msf
-Rcpp::NumericMatrix msf(mat lambda, mat pivot);
+Rcpp::NumericMatrix msf(arma::mat lambda, arma::mat pivot);
 RcppExport SEXP _infinitefactor_msf(SEXP lambdaSEXP, SEXP pivotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type pivot(pivotSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type pivot(pivotSEXP);
     rcpp_result_gen = Rcpp::wrap(msf(lambda, pivot));
     return rcpp_result_gen;
 END_RCPP
 }
 // msfOUT
-Rcpp::NumericVector msfOUT(mat lambda, mat pivot);
+Rcpp::NumericVector msfOUT(arma::mat lambda, arma::mat pivot);
 RcppExport SEXP _infinitefactor_msfOUT(SEXP lambdaSEXP, SEXP pivotSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type pivot(pivotSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type pivot(pivotSEXP);
     rcpp_result_gen = Rcpp::wrap(msfOUT(lambda, pivot));
     return rcpp_result_gen;
 END_RCPP
 }
 // aplr
-Rcpp::NumericMatrix aplr(mat matr, vec perm);
+Rcpp::NumericMatrix aplr(arma::mat matr, arma::vec perm);
 RcppExport SEXP _infinitefactor_aplr(SEXP matrSEXP, SEXP permSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type matr(matrSEXP);
-    Rcpp::traits::input_parameter< vec >::type perm(permSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type matr(matrSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type perm(permSEXP);
     rcpp_result_gen = Rcpp::wrap(aplr(matr, perm));
     return rcpp_result_gen;
 END_RCPP
@@ -86,45 +86,45 @@ BEGIN_RCPP
 END_RCPP
 }
 // eta_lin
-Rcpp::NumericMatrix eta_lin(mat lambda, vec ps, int k, int n, mat Y);
+Rcpp::NumericMatrix eta_lin(arma::mat lambda, arma::vec ps, int k, int n, arma::mat Y);
 RcppExport SEXP _infinitefactor_eta_lin(SEXP lambdaSEXP, SEXP psSEXP, SEXP kSEXP, SEXP nSEXP, SEXP YSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< vec >::type ps(psSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ps(psSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< mat >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Y(YSEXP);
     rcpp_result_gen = Rcpp::wrap(eta_lin(lambda, ps, k, n, Y));
     return rcpp_result_gen;
 END_RCPP
 }
 // lam_lin
-Rcpp::NumericMatrix lam_lin(mat eta, mat Plam, vec ps, int k, int p, mat Y);
+Rcpp::NumericMatrix lam_lin(arma::mat eta, arma::mat Plam, arma::vec ps, int k, int p, arma::mat Y);
 RcppExport SEXP _infinitefactor_lam_lin(SEXP etaSEXP, SEXP PlamSEXP, SEXP psSEXP, SEXP kSEXP, SEXP pSEXP, SEXP YSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< mat >::type Plam(PlamSEXP);
-    Rcpp::traits::input_parameter< vec >::type ps(psSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Plam(PlamSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ps(psSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
-    Rcpp::traits::input_parameter< mat >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Y(YSEXP);
     rcpp_result_gen = Rcpp::wrap(lam_lin(eta, Plam, ps, k, p, Y));
     return rcpp_result_gen;
 END_RCPP
 }
 // psi_mg
-Rcpp::NumericMatrix psi_mg(mat lambda, vec tauh, vec ps, int k, int p, double df);
+Rcpp::NumericMatrix psi_mg(arma::mat lambda, arma::vec tauh, arma::vec ps, int k, int p, double df);
 RcppExport SEXP _infinitefactor_psi_mg(SEXP lambdaSEXP, SEXP tauhSEXP, SEXP psSEXP, SEXP kSEXP, SEXP pSEXP, SEXP dfSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< vec >::type tauh(tauhSEXP);
-    Rcpp::traits::input_parameter< vec >::type ps(psSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tauh(tauhSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ps(psSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     Rcpp::traits::input_parameter< double >::type df(dfSEXP);
@@ -133,15 +133,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // del_mg
-Rcpp::NumericVector del_mg(mat lambda, mat psijh, vec tauh, vec delta, int k, int p, double ad1, double bd1, double ad2, double bd2);
+Rcpp::NumericVector del_mg(arma::mat lambda, arma::mat psijh, arma::vec tauh, arma::vec delta, int k, int p, double ad1, double bd1, double ad2, double bd2);
 RcppExport SEXP _infinitefactor_del_mg(SEXP lambdaSEXP, SEXP psijhSEXP, SEXP tauhSEXP, SEXP deltaSEXP, SEXP kSEXP, SEXP pSEXP, SEXP ad1SEXP, SEXP bd1SEXP, SEXP ad2SEXP, SEXP bd2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type psijh(psijhSEXP);
-    Rcpp::traits::input_parameter< vec >::type tauh(tauhSEXP);
-    Rcpp::traits::input_parameter< vec >::type delta(deltaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psijh(psijhSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tauh(tauhSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type delta(deltaSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     Rcpp::traits::input_parameter< double >::type ad1(ad1SEXP);
@@ -153,17 +153,17 @@ BEGIN_RCPP
 END_RCPP
 }
 // sig_lin
-Rcpp::NumericVector sig_lin(mat lambda, mat eta, int k, int p, int n, mat Y, double as, double bs);
+Rcpp::NumericVector sig_lin(arma::mat lambda, arma::mat eta, int k, int p, int n, arma::mat Y, double as, double bs);
 RcppExport SEXP _infinitefactor_sig_lin(SEXP lambdaSEXP, SEXP etaSEXP, SEXP kSEXP, SEXP pSEXP, SEXP nSEXP, SEXP YSEXP, SEXP asSEXP, SEXP bsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< mat >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Y(YSEXP);
     Rcpp::traits::input_parameter< double >::type as(asSEXP);
     Rcpp::traits::input_parameter< double >::type bs(bsSEXP);
     rcpp_result_gen = Rcpp::wrap(sig_lin(lambda, eta, k, p, n, Y, as, bs));
@@ -171,13 +171,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // plm_mg
-Rcpp::NumericMatrix plm_mg(mat psijh, vec tauh);
+Rcpp::NumericMatrix plm_mg(arma::mat psijh, arma::vec tauh);
 RcppExport SEXP _infinitefactor_plm_mg(SEXP psijhSEXP, SEXP tauhSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type psijh(psijhSEXP);
-    Rcpp::traits::input_parameter< vec >::type tauh(tauhSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psijh(psijhSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tauh(tauhSEXP);
     rcpp_result_gen = Rcpp::wrap(plm_mg(psijh, tauh));
     return rcpp_result_gen;
 END_RCPP
@@ -207,26 +207,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // psi_dl
-Rcpp::NumericMatrix psi_dl(mat lambda, mat phi, vec tau);
+Rcpp::NumericMatrix psi_dl(arma::mat lambda, arma::mat phi, arma::vec tau);
 RcppExport SEXP _infinitefactor_psi_dl(SEXP lambdaSEXP, SEXP phiSEXP, SEXP tauSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< vec >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tau(tauSEXP);
     rcpp_result_gen = Rcpp::wrap(psi_dl(lambda, phi, tau));
     return rcpp_result_gen;
 END_RCPP
 }
 // tau_dl
-Rcpp::NumericVector tau_dl(mat lambda, mat phi, int k, int p);
+Rcpp::NumericVector tau_dl(arma::mat lambda, arma::mat phi, int k, int p);
 RcppExport SEXP _infinitefactor_tau_dl(SEXP lambdaSEXP, SEXP phiSEXP, SEXP kSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type phi(phiSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
     rcpp_result_gen = Rcpp::wrap(tau_dl(lambda, phi, k, p));
@@ -234,12 +234,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // phi_dl
-Rcpp::NumericMatrix phi_dl(mat lambda, double a, int k, int p);
+Rcpp::NumericMatrix phi_dl(arma::mat lambda, double a, int k, int p);
 RcppExport SEXP _infinitefactor_phi_dl(SEXP lambdaSEXP, SEXP aSEXP, SEXP kSEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< double >::type a(aSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type p(pSEXP);
@@ -248,31 +248,31 @@ BEGIN_RCPP
 END_RCPP
 }
 // plm_dl
-Rcpp::NumericMatrix plm_dl(mat psi, mat phi, vec tau);
+Rcpp::NumericMatrix plm_dl(arma::mat psi, arma::mat phi, arma::vec tau);
 RcppExport SEXP _infinitefactor_plm_dl(SEXP psiSEXP, SEXP phiSEXP, SEXP tauSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type psi(psiSEXP);
-    Rcpp::traits::input_parameter< mat >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< vec >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psi(psiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type tau(tauSEXP);
     rcpp_result_gen = Rcpp::wrap(plm_dl(psi, phi, tau));
     return rcpp_result_gen;
 END_RCPP
 }
 // mh
-double mh(vec trial, mat amh, mat lambda, mat psi, vec phi, vec ps, vec xr, double yr, double ssy);
+double mh(arma::vec trial, arma::mat amh, arma::mat lambda, arma::mat psi, arma::vec phi, arma::vec ps, arma::vec xr, double yr, double ssy);
 RcppExport SEXP _infinitefactor_mh(SEXP trialSEXP, SEXP amhSEXP, SEXP lambdaSEXP, SEXP psiSEXP, SEXP phiSEXP, SEXP psSEXP, SEXP xrSEXP, SEXP yrSEXP, SEXP ssySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< vec >::type trial(trialSEXP);
-    Rcpp::traits::input_parameter< mat >::type amh(amhSEXP);
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type psi(psiSEXP);
-    Rcpp::traits::input_parameter< vec >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< vec >::type ps(psSEXP);
-    Rcpp::traits::input_parameter< vec >::type xr(xrSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type trial(trialSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type amh(amhSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psi(psiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ps(psSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type xr(xrSEXP);
     Rcpp::traits::input_parameter< double >::type yr(yrSEXP);
     Rcpp::traits::input_parameter< double >::type ssy(ssySEXP);
     rcpp_result_gen = Rcpp::wrap(mh(trial, amh, lambda, psi, phi, ps, xr, yr, ssy));
@@ -280,20 +280,20 @@ BEGIN_RCPP
 END_RCPP
 }
 // eta_int
-Rcpp::NumericMatrix eta_int(mat lambda, mat eta, vec ps, vec phi, mat Psi, int k, int n, vec Y, mat X, double sigmasq_y, double delta_rw, Rcpp::NumericVector acp);
+Rcpp::NumericMatrix eta_int(arma::mat lambda, arma::mat eta, arma::vec ps, arma::vec phi, arma::mat Psi, int k, int n, arma::vec Y, arma::mat X, double sigmasq_y, double delta_rw, Rcpp::NumericVector acp);
 RcppExport SEXP _infinitefactor_eta_int(SEXP lambdaSEXP, SEXP etaSEXP, SEXP psSEXP, SEXP phiSEXP, SEXP PsiSEXP, SEXP kSEXP, SEXP nSEXP, SEXP YSEXP, SEXP XSEXP, SEXP sigmasq_ySEXP, SEXP delta_rwSEXP, SEXP acpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type lambda(lambdaSEXP);
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< vec >::type ps(psSEXP);
-    Rcpp::traits::input_parameter< vec >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< mat >::type Psi(PsiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type lambda(lambdaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type ps(psSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type Psi(PsiSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< vec >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< double >::type sigmasq_y(sigmasq_ySEXP);
     Rcpp::traits::input_parameter< double >::type delta_rw(delta_rwSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type acp(acpSEXP);
@@ -302,14 +302,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // psi_int
-// Rcpp::NumericVector psi_int(mat eta, vec y, vec phi, double ssy, int k, int n);
+Rcpp::NumericMatrix psi_int(arma::mat eta, arma::vec y, arma::vec phi, double ssy, int k, int n);
 RcppExport SEXP _infinitefactor_psi_int(SEXP etaSEXP, SEXP ySEXP, SEXP phiSEXP, SEXP ssySEXP, SEXP kSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< vec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< vec >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi(phiSEXP);
     Rcpp::traits::input_parameter< double >::type ssy(ssySEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
@@ -318,30 +318,30 @@ BEGIN_RCPP
 END_RCPP
 }
 // phi_int
-Rcpp::NumericVector phi_int(mat eta, vec y, double ssy, mat psi, int k);
+Rcpp::NumericVector phi_int(arma::mat eta, arma::vec y, double ssy, arma::mat psi, int k);
 RcppExport SEXP _infinitefactor_phi_int(SEXP etaSEXP, SEXP ySEXP, SEXP ssySEXP, SEXP psiSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
     Rcpp::traits::input_parameter< double >::type ssy(ssySEXP);
-    Rcpp::traits::input_parameter< mat >::type psi(psiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psi(psiSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(phi_int(eta, y, ssy, psi, k));
     return rcpp_result_gen;
 END_RCPP
 }
 // ssy_int
-double ssy_int(mat eta, vec phi, mat psi, vec y, int n);
+double ssy_int(arma::mat eta, arma::vec phi, arma::mat psi, arma::vec y, int n);
 RcppExport SEXP _infinitefactor_ssy_int(SEXP etaSEXP, SEXP phiSEXP, SEXP psiSEXP, SEXP ySEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mat >::type eta(etaSEXP);
-    Rcpp::traits::input_parameter< vec >::type phi(phiSEXP);
-    Rcpp::traits::input_parameter< mat >::type psi(psiSEXP);
-    Rcpp::traits::input_parameter< vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type eta(etaSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi(phiSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type psi(psiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     rcpp_result_gen = Rcpp::wrap(ssy_int(eta, phi, psi, y, n));
     return rcpp_result_gen;

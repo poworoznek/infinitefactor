@@ -1,3 +1,8 @@
 useDynLib(infinitefactor, .registration=TRUE)
 importFrom(Rcpp, evalCpp)
+importFrom("stats", "quantile", "rexp", "rgamma", "rnorm", "runif",
+               "var", "varimax")
+importFrom("utils", "setTxtProgressBar", "txtProgressBar")
+importFrom("ggplot2", "aes", "element_blank", "element_text", "geom_tile", "ggplot", "ggtitle", "labs", "scale_fill_gradient2", "theme")
+importFrom("reshape2", "melt")
 exportPattern("^[[:alpha:]]+")

@@ -55,7 +55,7 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + bayesSurv::rMVNorm(n,Sigma = 3*diag(p))
+Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
 out = linearDL(Y = Y, nrun = 10000, burn = 5000)
 

@@ -10,10 +10,10 @@ Perform Bayesian factor analysis by sampling the posterior distribution of param
 linearDL(Y, nrun, burn, thin = 1, prop = 1, 
 epsilon = 1e-3, k = NULL,
 output = c("covMean", "covSamples", "factSamples",
-"sigSamples", "numFactors"), verbose = TRUE, 
-dump = FALSE, filename = "samps.Rds", buffer = 10000)
+"sigSamples"), verbose = TRUE, dump = FALSE,
+filename = "samps.Rds", buffer = 10000)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
 \item{Y}{Data matrix (n x p)}
 \item{nrun}{number of iterations}
@@ -39,7 +39,7 @@ some of:
 \item{numFacts}{Number of factors for each iteration}
 }
 \references{
-Bhattacharya, Anirban, and David B. Dunson. "Sparse Bayesian infinite factor models." Biometrika (2011): 291-306.
+Bhattacharya, Anirban, et al. "Dirichlet-Laplace priors for optimal shrinkage." Journal of the American Statistical Association 110.512 (2015): 1479-1490.
 }
 \author{
 Evan Poworoznek
@@ -63,7 +63,7 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + bayesSurv::rMVNorm(n,Sigma = 3*diag(p))
+Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
 out = linearMGSP(Y = Y, nrun = 10000, burn = 5000)
 }

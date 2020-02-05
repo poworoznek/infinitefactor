@@ -7,7 +7,7 @@ Factor regression model with interactions using the Multiplicative Gamma Shrinka
 Perform a regression of y onto X and all 2 way interactions in X using the latent factor model introduced in Ferrari and Dunson (2020). This version uses the Multiplicative Gamma Shrinkage Prior introduced in Bhattacharya and Dunson (2011).
 }
 \usage{
-interactionMGSP(y, X, nrun, burn = 0, thin = 1, 
+interactionMGSP(y, X, nrun, burn, thin = 1, 
               delta_rw = 0.0526749, a = 1/2, k = NULL, 
               output = c("covMean", "covSamples", "factSamples", 
               "sigSamples", "coefSamples","errSamples"), 
@@ -73,7 +73,7 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + bayesSurv::rMVNorm(n,Sigma = 3*diag(p))
+X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
 beta_true = numeric(p); beta_true[c(1,3,6,8,10,11)] =c(1,1,0.5,-1,-2,-0.5)
 Omega_true = matrix(0,p,p)
