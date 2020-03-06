@@ -73,9 +73,9 @@ linearMGSP = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   if(nf) K = rep(NA, sp)
   ind = 1
   
+  at = ceiling(nrun/100)
   if(verbose) {
     pb = txtProgressBar(style = 3)
-    at = ceiling(nrun/100)
   }
   
   for(i in 1:nrun){

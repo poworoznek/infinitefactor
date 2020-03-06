@@ -73,9 +73,9 @@ interactionDL = function(y, X, nrun, burn = 0, thin = 1, delta_rw = 0.0526749,
   ind = 1
   acp = numeric(n)
   
+  at = ceiling(nrun/100)
   if(verbose) {
     pb = txtProgressBar(style = 3)
-    at = ceiling(nrun/100)
   }
   
   for(i in 1:nrun){
