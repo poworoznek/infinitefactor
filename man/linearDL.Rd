@@ -51,7 +51,7 @@ Evan Poworoznek
 \examples{
 k0 = 5
 p = 20
-n = 500
+n = 50
 
 lambda = matrix(rnorm(p*k0, 0, 0.01), ncol = k0)
 lambda[sample.int(p, 40, replace = TRUE) +
@@ -65,5 +65,5 @@ plotmat(varimax(lambda)[[1]])
 
 Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
-out = linearMGSP(Y = Y, nrun = 10000, burn = 5000)
+out = linearMGSP(Y = Y, nrun = 1000, burn = 500)
 }

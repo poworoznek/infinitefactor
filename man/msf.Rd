@@ -43,7 +43,7 @@ msf(lambda, pivot)
 # fast implementation for a list of samples
 k0 = 5
 p = 20
-n = 500
+n = 100
 
 lambda = matrix(rnorm(p*k0, 0, 0.01), ncol = k0)
 lambda[sample.int(p, 40, replace = TRUE) +
@@ -57,13 +57,13 @@ plotmat(varimax(lambda)[[1]])
 
 Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
-out = linearDL(Y = Y, nrun = 10000, burn = 5000)
+out = linearMGSP(Y = Y, nrun = 1000, burn = 500, adapt = FALSE)
 
 vari = lapply(out$lambdaSamps, varimax)
 loads = lapply(vari, `[[`, 1)
 
 norms = sapply(loads, norm, "2")
-pivot = loads[order(norms)][[2500]]
+pivot = loads[order(norms)][[250]]
 
 aligned = lapply(loads, msf, pivot)
 plotmat(summat(aligned))

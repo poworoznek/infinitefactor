@@ -61,7 +61,7 @@ Federico Ferrari}
 \examples{
 k0 = 5
 p = 20
-n = 500
+n = 50
 
 lambda = matrix(rnorm(p*k0, 0, 0.01), ncol = k0)
 lambda[sample.int(p, 40, replace = TRUE) +
@@ -83,5 +83,5 @@ Omega_true[2,3] = 0.5;
 Omega_true = Omega_true + t(Omega_true)
 y = X\%*\%beta_true + diag(X\%*\%Omega_true\%*\%t(X)) +  rnorm(n,0.5)
 
-intmgsp = interactionMGSP(y, X, 10000, 5000, k = 5)
+intmgsp = interactionMGSP(y, X, 1000, 500, k = 5)
 }
