@@ -3,7 +3,7 @@
 # prior hyperparameters informed by Durante (2017)
 # version for adaptive number of factors weighted by iteration
 
-# ARGUMENTS: Y: Data matrix (n x p); 
+# ARGUMENTS: X: Data matrix (n x p); 
 #            nrun: number of iterations;
 #            burn: burn-in period;
 #            thin: thinning interval;
@@ -17,13 +17,19 @@
 #            dump: logical. Save output object during sampling?
 #            filename: if dump, filename for output
 #            buffer: if dump, frequency of saving
+#            augment: additional sampling steps as an expression
 
-linearMGSP = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
+linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
                       kinit = NULL, adapt = TRUE, output = c("covMean", "covSamples", 
                                                              "factSamples", "sigSamples", 
                                                              "numFactors"), 
                       verbose = TRUE, dump = FALSE, filename = "samps.Rds",
-                      buffer = 10000){
+                      buffer = 10000, augment = NULL){
+  
+  if(nrun <= burn) stop("nrun must be larger than burn")
+  if(!is.matrix(X)) stop("X must be a matrix")
+  if(any(is.na(X))) stop("X cannot contain missing data")
+  if(!is.null(augment)) if(!is.expression(augment)) stop("augment must be an expression (see expression())")
   
   cm = any(output %in% "covMean")
   cs = any(output %in% "covSamples")
@@ -31,8 +37,8 @@ linearMGSP = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   ss = any(output %in% "sigSamples")
   nf = any(output %in% "numFactors")
   
-  p = ncol(Y)
-  n = nrow(Y)
+  p = ncol(X)
+  n = nrow(X)
   
   as = 1                          # gamma hyperparameters for residual precision
   bs = 0.3                        
@@ -50,9 +56,9 @@ linearMGSP = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   
   sp = floor((nrun - burn)/thin)        # number of posterior samples
   
-  VY= apply(Y, 2, var)                  # explicitly preserve scale
+  VY= apply(X, 2, var)                  # explicitly preserve scale
   scaleMat = sqrt((VY) %*% t(VY))
-  Y = scale(Y)
+  X = scale(X)
   num = 0
   k=kinit                               # no. of factors to start with
   
@@ -79,13 +85,15 @@ linearMGSP = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   }
   
   for(i in 1:nrun){
-    eta = eta_lin(Lambda, ps, k, n, Y)
-    Lambda = lam_lin(eta, Plam, ps, k, p, Y)
+    eta = eta_lin(Lambda, ps, k, n, X)
+    Lambda = lam_lin(eta, Plam, ps, k, p, X)
     psijh = psi_mg(Lambda, tauh, ps, k, p, df)
     delta = del_mg(Lambda, psijh, tauh, delta, k, p, ad1, bd1, ad2, bd2)
     tauh = cumprod(delta)
-    ps = sig_lin(Lambda, eta, k, p, n, Y, as, bs)
+    ps = sig_lin(Lambda, eta, k, p, n, X, as, bs)
     Plam = plm_mg(psijh, tauh)
+    
+    if(!is.null(augment)) eval(augment)
     
     if(adapt){
       # ----- make adaptations ----#

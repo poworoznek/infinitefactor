@@ -2,7 +2,7 @@
 # using dirichlet-laplace prior on factor loadings from Battacharya Dunson (2014)
 # same eta, lambda, and sigma updates as MGSP linear
 
-# ARGUMENTS: Y: Data matrix (n x p); 
+# ARGUMENTS: X: Data matrix (n x p); 
 #            nrun: number of iterations;
 #            burn: burn-in period;
 #            thin: thinning interval;
@@ -15,12 +15,18 @@
 #            dump: Save output object during sampling?
 #            filename: if dump, filename for output
 #            buffer: if dump, frequency of saving
+#            augment: additional sampling steps as an expression
 
-linearDL = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
+linearDL = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
                     k = NULL, output = c("covMean", "covSamples", 
                                              "factSamples", "sigSamples"), 
                     verbose = TRUE, dump = FALSE, filename = "samps.Rds", 
-                    buffer = 10000){
+                    buffer = 10000, augment = NULL){
+  
+  if(nrun <= burn) stop("nrun must be larger than burn")
+  if(!is.matrix(X)) stop("X must be a matrix")
+  if(any(is.na(X))) stop("X cannot contain missing data")
+  if(!is.null(augment)) if(!is.expression(augment)) stop("augment must be an expression (see expression())")
   
   cm = any(output %in% "covMean")
   cs = any(output %in% "covSamples")
@@ -28,8 +34,8 @@ linearDL = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   ss = any(output %in% "sigSamples")
   nf = any(output %in% "numFactors")
   
-  p = ncol(Y)
-  n = nrow(Y)
+  p = ncol(X)
+  n = nrow(X)
 
   a = 1/2
   as = 1
@@ -39,9 +45,9 @@ linearDL = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   
   sp = floor((nrun - burn)/thin)        # number of posterior samples
   
-  VY= apply(Y, 2, var)                  # explicitly preserve scale
+  VY= apply(X, 2, var)                  # explicitly preserve scale
   scaleMat = sqrt((VY) %*% t(VY))
-  Y = scale(Y)
+  X = scale(X)
   
   # --- Initial values --- #
   ps = rgamma(p,as,bs)
@@ -71,14 +77,15 @@ linearDL = function(Y, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   }
   
   for(i in 1:nrun){
-    eta = eta_lin(lambda, ps, k, n, Y)
+    eta = eta_lin(lambda, ps, k, n, X)
     Plam = plm_dl(psi, phi, tau)
-    lambda = lam_lin(eta, Plam, ps, k, p, Y)
+    lambda = lam_lin(eta, Plam, ps, k, p, X)
     psi = psi_dl(lambda, phi, tau)
     tau = tau_dl(lambda, phi, k, p)
     phi = phi_dl(lambda, a, k, p)
-    ps = sig_lin(lambda, eta, k, p, n, Y, as, bs)
+    ps = sig_lin(lambda, eta, k, p, n, X, as, bs)
     
+    if(!is.null(augment)) eval(augment)
     
     if((i %% thin == 0) & (i > burn)) {
       if(cm | cs) Omega = (tcrossprod(lambda) + diag(1/c(ps))) * scaleMat

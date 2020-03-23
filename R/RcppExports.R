@@ -13,22 +13,6 @@ aplr <- function(matr, perm) {
     .Call(`_infinitefactor_aplr`, matr, perm)
 }
 
-rcpparma_hello_world <- function() {
-    .Call(`_infinitefactor_rcpparma_hello_world`)
-}
-
-rcpparma_outerproduct <- function(x) {
-    .Call(`_infinitefactor_rcpparma_outerproduct`, x)
-}
-
-rcpparma_innerproduct <- function(x) {
-    .Call(`_infinitefactor_rcpparma_innerproduct`, x)
-}
-
-rcpparma_bothproducts <- function(x) {
-    .Call(`_infinitefactor_rcpparma_bothproducts`, x)
-}
-
 eta_lin <- function(lambda, ps, k, n, Y) {
     .Call(`_infinitefactor_eta_lin`, lambda, ps, k, n, Y)
 }

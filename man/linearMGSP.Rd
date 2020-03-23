@@ -8,15 +8,16 @@ Sample Bayesian linear infinite factor models with the Multiplicative Gamma Shri
 Perform Bayesian factor analysis by sampling the posterior distribution of parameters in a factor model with the Multiplicative Gamma Shrinkage Prior of Bhattacharya and Dunson
 }
 \usage{
-linearMGSP(Y, nrun, burn, thin = 1, prop = 1, 
+linearMGSP(X, nrun, burn, thin = 1, prop = 1, 
 epsilon = 1e-3, kinit = NULL, adapt = TRUE, 
 output = c("covMean", "covSamples", "factSamples",
 "sigSamples", "numFactors"), verbose = TRUE, 
-dump = FALSE, filename = "samps.Rds", buffer = 10000)
+dump = FALSE, filename = "samps.Rds", buffer = 10000,
+augment = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{Y}{Data matrix (n x p)}
+\item{X}{Data matrix (n x p)}
 \item{nrun}{number of iterations}
 \item{burn}{burn-in period}
 \item{thin}{thinning interval}
@@ -29,6 +30,7 @@ dump = FALSE, filename = "samps.Rds", buffer = 10000)
 \item{dump}{logical. Save output object during sampling?}
 \item{filename}{if dump, filename for output}
 \item{buffer}{if dump, frequency of saving}
+\item{augment}{additional sampling steps as an expression}
 }
 
 \value{
@@ -65,7 +67,7 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
+X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
-out = linearMGSP(Y = Y, nrun = 1000, burn = 500)
+out = linearMGSP(X = X, nrun = 1000, burn = 500)
 }

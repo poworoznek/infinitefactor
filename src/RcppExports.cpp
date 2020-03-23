@@ -42,49 +42,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_hello_world
-arma::mat rcpparma_hello_world();
-RcppExport SEXP _infinitefactor_rcpparma_hello_world() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpparma_hello_world());
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_outerproduct
-arma::mat rcpparma_outerproduct(const arma::colvec& x);
-RcppExport SEXP _infinitefactor_rcpparma_outerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_outerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_innerproduct
-double rcpparma_innerproduct(const arma::colvec& x);
-RcppExport SEXP _infinitefactor_rcpparma_innerproduct(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_innerproduct(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rcpparma_bothproducts
-Rcpp::List rcpparma_bothproducts(const arma::colvec& x);
-RcppExport SEXP _infinitefactor_rcpparma_bothproducts(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_bothproducts(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // eta_lin
 Rcpp::NumericMatrix eta_lin(arma::mat lambda, arma::vec ps, int k, int n, arma::mat Y);
 RcppExport SEXP _infinitefactor_eta_lin(SEXP lambdaSEXP, SEXP psSEXP, SEXP kSEXP, SEXP nSEXP, SEXP YSEXP) {
@@ -352,10 +309,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_infinitefactor_msf", (DL_FUNC) &_infinitefactor_msf, 2},
     {"_infinitefactor_msfOUT", (DL_FUNC) &_infinitefactor_msfOUT, 2},
     {"_infinitefactor_aplr", (DL_FUNC) &_infinitefactor_aplr, 2},
-    {"_infinitefactor_rcpparma_hello_world", (DL_FUNC) &_infinitefactor_rcpparma_hello_world, 0},
-    {"_infinitefactor_rcpparma_outerproduct", (DL_FUNC) &_infinitefactor_rcpparma_outerproduct, 1},
-    {"_infinitefactor_rcpparma_innerproduct", (DL_FUNC) &_infinitefactor_rcpparma_innerproduct, 1},
-    {"_infinitefactor_rcpparma_bothproducts", (DL_FUNC) &_infinitefactor_rcpparma_bothproducts, 1},
     {"_infinitefactor_eta_lin", (DL_FUNC) &_infinitefactor_eta_lin, 5},
     {"_infinitefactor_lam_lin", (DL_FUNC) &_infinitefactor_lam_lin, 6},
     {"_infinitefactor_psi_mg", (DL_FUNC) &_infinitefactor_psi_mg, 6},

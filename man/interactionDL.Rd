@@ -13,7 +13,7 @@ interactionDL(y, X, nrun, burn = 0, thin = 1,
               output = c("covMean", "covSamples", "factSamples", 
               "sigSamples", "coefSamples","errSamples"), 
               verbose = TRUE, dump = FALSE, filename = "samps.Rds", 
-              buffer = 10000, adapt = "burn")
+              buffer = 10000, adapt = "burn", augment = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,6 +31,7 @@ interactionDL(y, X, nrun, burn = 0, thin = 1,
 \item{filename}{if dump: filename to address list of posterior samples}
 \item{buffer}{if dump: how often to save samples}
 \item{adapt}{logical or "burn". Adapt proposal variance in metropolis hastings step? if "burn", will adapt during burn in and not after.}
+\item{augment}{additional sampling steps as an expression}
 }
 \value{
 some of:

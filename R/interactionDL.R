@@ -14,11 +14,18 @@
 #            c("covMean", "covSamples", "factSamples", "sigSamples", "coefSamples", "numFactors", "errSamples");
 #            adapt: logical or "burn". Adapt proposal variance in metropolis hastings step? if "burn", 
 #                   will adapt during burn in and not after
+#            augment: additional sampling steps as an expression
 
 interactionDL = function(y, X, nrun, burn = 0, thin = 1, delta_rw = 0.0526749,
                          a = 1/2, k = NULL, output = c("covMean", "covSamples", "factSamples", 
                                                            "sigSamples", "coefSamples","errSamples"), 
-                         verbose = TRUE, dump = FALSE, filename = "samps.Rds", buffer = 10000, adapt = "burn"){
+                         verbose = TRUE, dump = FALSE, filename = "samps.Rds", buffer = 10000, adapt = "burn",
+                         augment = NULL){
+  
+  if(nrun <= burn) stop("nrun must be larger than burn")
+  if(!is.matrix(X)) stop("X must be a matrix")
+  if(any(is.na(X))) stop("X cannot contain missing data")
+  if(!is.null(augment)) if(!is.expression(augment)) stop("augment must be an expression (see expression())")
   
   cm = any(output %in% "covMean")
   cs = any(output %in% "covSamples")
@@ -89,6 +96,8 @@ interactionDL = function(y, X, nrun, burn = 0, thin = 1, delta_rw = 0.0526749,
     tau = c(tau_dl(lambda, phiDL, k, p))
     phiDL = phi_dl(lambda, a, k, p)
     ps = c(sig_lin(lambda, eta, k, p, n, X, as, bs))
+    
+    if(!is.null(augment)) eval(augment)
     
     if((i %% thin == 0) & (i > burn)) {
       if(cm | cs) Omega = (tcrossprod(lambda) + diag(1/ps)) * scaleMat

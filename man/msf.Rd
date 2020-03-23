@@ -55,9 +55,9 @@ lambda[,4] = rnorm(p, 0, 0.5)
 lambda[,5] = rnorm(p, 0, 0.5)
 plotmat(varimax(lambda)[[1]])
 
-Y = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
+X = matrix(rnorm(n*k0),n,k0)\%*\%t(lambda) + matrix(rnorm(n*p), n, p)
 
-out = linearMGSP(Y = Y, nrun = 1000, burn = 500, adapt = FALSE)
+out = linearMGSP(X = X, nrun = 1000, burn = 500, adapt = FALSE)
 
 vari = lapply(out$lambdaSamps, varimax)
 loads = lapply(vari, `[[`, 1)

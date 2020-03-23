@@ -8,17 +8,18 @@ Plot a matrix
 Plot an image of a matrix using ggplot2
 }
 \usage{
-plotmat(mat, color = "green", title = NULL)
+plotmat(mat, color = "green", title = NULL, args = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{mat}{Matrix to plot}
-  \item{color}{Color scheme, either "green" or "red"}
+  \item{color}{Color scheme: "green", "red", or "wes"}
   \item{title}{optional plot title}
+  \item{args}{optional additional ggplot arguments}
 }
 
 \value{
-sends image to active graphics device
+sends image to active graphics device or outputs a ggplot object
 }
 
 \author{
