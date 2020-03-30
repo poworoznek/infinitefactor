@@ -45,7 +45,6 @@ X = data
 
 X[is.na(X)] = LOD[is.na(X)]
 
-set.seed(10)
 sample = linearMGSP(X, 10000, 5000, augment = lodX, kinit = 5, adapt = FALSE)
 ```
 
