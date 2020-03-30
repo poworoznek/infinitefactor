@@ -46,7 +46,7 @@ X = data
 X[is.na(X)] = LOD[is.na(X)]
 
 set.seed(10)
-sample = linearMGSP(X, 10000, 5000, augment = missing, kinit = 5, adapt = FALSE)
+sample = linearMGSP(X, 10000, 5000, augment = lodX, kinit = 5, adapt = FALSE)
 ```
 
 This code can be easily altered for upper limits of detection (see `rtruncnorm` documentation).
