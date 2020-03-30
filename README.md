@@ -24,7 +24,7 @@ missing = expression({X = completeX(X, data, lambda, eta, ps)})
 X = data
 X[is.na(X)] = rnorm(sum(is.na(X)))
                     
-sample = linearMGSP(X, 10000, 5000, augment = missing, kinit = 5, adapt = FALSE)
+sample = linearMGSP(X, 10000, 5000, augment = missing)
 ```
 
 Similarly we can define an augmentation for missingness due to a (lower) limit of detection. Here we allow a different LoD for every element of X, corresponding to test and batch LoD variablility, and those limits are encoded in the matrix `LOD` where dim(`LOD`)=dim(`X`). In this case the appropriate posterior predictive is the same as above, but truncated at the limit of detection. We use the `truncnorm` package for truncated normal sampling.
@@ -45,7 +45,7 @@ X = data
 
 X[is.na(X)] = LOD[is.na(X)]
 
-sample = linearMGSP(X, 10000, 5000, augment = lodX, kinit = 5, adapt = FALSE)
+sample = linearMGSP(X, 10000, 5000, augment = lodX)
 ```
 
 This code can be easily altered for upper limits of detection (see `rtruncnorm` documentation).
