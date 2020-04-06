@@ -46,13 +46,13 @@ lodX = function(X, Xmiss, lambda, eta, ps){
   X[is.na(Xmiss)] = rtruncnorm(nmiss, b = LOD[is.na(X)], means,sqrt(vars))
   return(X)}
 
-missing = expression({X = lodX(X, data, lambda, eta, ps)})
+lodMissing = expression({X = lodX(X, data, lambda, eta, ps)})
 
 X = data
 
 X[is.na(X)] = LOD[is.na(X)]
 
-sample = linearMGSP(X, 10000, 5000, augment = lodX)
+sample = linearMGSP(X, 10000, 5000, augment = lodMissing)
 ```
 
 This code can be easily altered for upper limits of detection (see `rtruncnorm` documentation).
