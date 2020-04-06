@@ -57,5 +57,9 @@ sample = linearMGSP(X, 10000, 5000, augment = lodX)
 
 This code can be easily altered for upper limits of detection (see `rtruncnorm` documentation).
 
+### Acknowledgements
 
+This package is based upon work supported by the National Institute for Environmental Health Sciences under grant 1R01ES028804-01. Any opinions, findings, and
+conclusions or recommendations expressed in this material are those of
+the author(s) and do not necessarily reflect the views of the National Institute for Environmental Health Sciences.
 
