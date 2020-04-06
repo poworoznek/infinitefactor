@@ -1,7 +1,14 @@
 # infinitefactor
 Bayesian infinite factor modelling
 
-This package was developed for modular construction of Bayesian factor samplers using a variety of data models and priors. Bayesian factor models are key tools for performing reproducible and robust dimension reduction and modeling complex relationships among sets of regressors. Accounting for structure with factor models allows both efficiencies in estimation, and inference on that structure. Popular shrinkage priors (MGSP, Dirichlet-Laplace, others) have been formulated for the factor loadings matrix that do not require prespecified covariate grouping or order-dependence. This package aims to implement those priors for use with multiple data models in an easy, straightforward, and fast environment for application, as well as encourage further model and prior development through use of modular and exchangeable parameter updates.
+This package for R was developed for modular construction of Bayesian factor samplers using a variety of data models and priors. Bayesian factor models are key tools for performing reproducible and robust dimension reduction and modeling complex relationships among sets of regressors. Accounting for structure with factor models allows both efficiencies in estimation, and inference on that structure. Popular shrinkage priors (MGSP, Dirichlet-Laplace, others) have been formulated for the factor loadings matrix that do not require prespecified covariate grouping or order-dependence. This package aims to implement those priors for use with multiple data models in an easy, straightforward, and fast environment for application, as well as encourage further model and prior development through use of modular and exchangeable parameter updates. Install the most recent version from this GitHub repository using:
+```R
+devtools::install_github('poworoznek/infinitefactor)
+``` 
+or in release version from CRAN using:
+```R
+install.packages('infinitefactor')
+```
 
 ## Augmentation
 
