@@ -34,7 +34,7 @@ X[is.na(X)] = rnorm(sum(is.na(X)))
 sample = linearDL(X, 10000, 5000, augment = missing)
 ```
 
-### Acknowledgements
+## Acknowledgements
 
 This package is based upon work supported by the National Institute for Environmental Health Sciences under grant 1R01ES028804-01. Any opinions, findings, and
 conclusions or recommendations expressed in this material are those of
