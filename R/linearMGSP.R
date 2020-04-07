@@ -64,7 +64,7 @@ linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   
   # --- Initial values --- #
   ps = rgamma(p, as, bs)                           # Sigma = diagonal residual covariance
-  Lambda = matrix(1, nrow = p, ncol = k)           # latent factor distribution = standard normal
+  lambda = matrix(1, nrow = p, ncol = k)           # latent factor distribution = standard normal
   
   psijh = matrix(rgamma(p*k, df/2, df/2), nrow = p, ncol = k)     # local shrinkage coefficients
   delta = c(rgamma(1,ad1,bd1), rgamma(k-1,ad2,bd2))       # gobal shrinkage coefficients multilpliers
@@ -85,12 +85,12 @@ linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
   }
   
   for(i in 1:nrun){
-    eta = eta_lin(Lambda, ps, k, n, X)
-    Lambda = lam_lin(eta, Plam, ps, k, p, X)
-    psijh = psi_mg(Lambda, tauh, ps, k, p, df)
-    delta = del_mg(Lambda, psijh, tauh, delta, k, p, ad1, bd1, ad2, bd2)
+    eta = eta_lin(lambda, ps, k, n, X)
+    lambda = lam_lin(eta, Plam, ps, k, p, X)
+    psijh = psi_mg(lambda, tauh, ps, k, p, df)
+    delta = del_mg(lambda, psijh, tauh, delta, k, p, ad1, bd1, ad2, bd2)
     tauh = cumprod(delta)
-    ps = sig_lin(Lambda, eta, k, p, n, X, as, bs)
+    ps = sig_lin(lambda, eta, k, p, n, X, as, bs)
     Plam = plm_mg(psijh, tauh)
     
     if(!is.null(augment)) eval(augment)
@@ -99,14 +99,14 @@ linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
       # ----- make adaptations ----#
       prob = 1/exp(b0 + b1*i)                    # probability of adapting
       uu = runif(1)
-      lind = colSums(abs(Lambda) < epsilon)/p    # proportion of elements in each column less than eps in magnitude
+      lind = colSums(abs(lambda) < epsilon)/p    # proportion of elements in each column less than eps in magnitude
       vec = lind >= prop
       num = sum(vec)                             # number of redundant columns
       
       if(uu < prob) {
         if((i > 20) & (num == 0) & all(lind < 0.995)) {
           k = k + 1
-          Lambda = cbind(Lambda, rep(0,p))
+          lambda = cbind(lambda, rep(0,p))
           eta = cbind(eta,rnorm(n))
           psijh = cbind(psijh, rgamma(p,df/2,df/2))
           delta[k] = rgamma(1, ad2,bd2)
@@ -115,7 +115,7 @@ linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
         } else {
           if (num > 0) {
             k = max(k - num,1)
-            Lambda = Lambda[,!vec, drop = F]
+            lambda = lambda[,!vec, drop = F]
             psijh = psijh[,!vec, drop = F]
             eta = eta[,!vec, drop = F]
             delta = delta[!vec]
@@ -127,10 +127,10 @@ linearMGSP = function(X, nrun, burn, thin = 1, prop = 1, epsilon = 1e-3,
     }
     
     if((i %% thin == 0) & (i > burn)) {
-      if(cm | cs) Omega = (tcrossprod(Lambda) + diag(1/c(ps))) * scaleMat
+      if(cm | cs) Omega = (tcrossprod(lambda) + diag(1/c(ps))) * scaleMat
       if(cm) COVMEAN = COVMEAN + Omega / sp
       if(cs) OMEGA[,,ind] = Omega
-      if(fs) {LAMBDA[[ind]] = Lambda
+      if(fs) {LAMBDA[[ind]] = lambda
               ETA[[ind]] = eta}
       if(ss) SIGMA[,ind] = 1/ps
       if(nf) K[ind] = k

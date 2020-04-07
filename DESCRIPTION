@@ -1,7 +1,7 @@
 Package: infinitefactor
 Type: Package
 Title: Bayesian Infinite Factor Models
-Version: 1.0
+Version: 1.1
 Date: 2020-03-30
 Author: Evan Poworoznek
 Maintainer: Evan Poworoznek <infinitefactorpackage@gmail.com>
